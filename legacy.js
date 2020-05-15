@@ -343,25 +343,21 @@ module.exports = class LegacyWrapper extends EventEmitter {
    * @param {string[]} prefixes
    */
   requestCalc (prefixes) {
-    this._manager.withAuthSocket((state = {}) => {
+    return this._manager.withAuthSocket((state = {}) => {
       return sendWS(state, [0, 'calc', null, prefixes.map(p => [p])])
     })
   }
 
-  submitOrder (o) {
-    return new Promise((resolve, reject) => {
-      this._manager.withAuthSocket((state = {}) => {
-        submitOrderWS(state, o).then(resolve).catch(reject)
-      })
-    })
+  async submitOrder (o) {
+    return this._manager.withAuthSocket((state = {}) => (
+      submitOrderWS(state, o)
+    ))
   }
 
   cancelOrder (o) {
-    return new Promise((resolve, reject) => {
-      this._manager.withAuthSocket((state = {}) => {
-        cancelOrderWS(state, o).then(resolve).catch(reject)
-      })
-    })
+    this._manager.withAuthSocket((state = {}) => (
+      cancelOrderWS(state, o)
+    ))
   }
 
   cancelOrders (os) {
@@ -369,10 +365,8 @@ module.exports = class LegacyWrapper extends EventEmitter {
   }
 
   updateOrder (changes) {
-    return new Promise((resolve, reject) => {
-      this._manager.withAuthSocket((state = {}) => {
-        updateOrderWS(state, changes).then(resolve).catch(reject)
-      })
+    return this._manager.withAuthSocket((state = {}) => {
+      updateOrderWS(state, changes)
     })
   }
 

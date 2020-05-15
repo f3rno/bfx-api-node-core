@@ -1,3 +1,11 @@
+# 1.1.9
+- Manager feature: add getWSPoolSize() method
+- Manager feature: add getChannelsPerSocket() method
+- Manager refactor: withAuthSocket() now returns a promise and handles async cbs
+- Manager refactor: withSocket() now returns a promise and handles async cbs
+- Manager refactor: auth() now returns a promise
+- Manager fix: pass calc and dms through on auth() call if provided
+
 # 1.1.8
 - fix: use relative paths to allow generic mocha execution
 

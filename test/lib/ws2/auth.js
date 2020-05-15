@@ -18,7 +18,7 @@ const defaultState = {
 
 describe('ws2:auth', () => {
   it('sends auth packet w/ dms and calc params', (done) => {
-    auth({
+    auth.ws({
       ...defaultState,
       ws: {
         send: (json) => {
@@ -41,7 +41,7 @@ describe('ws2:auth', () => {
   })
 
   it('binds auth success event listener', (done) => {
-    auth({
+    auth.ws({
       ...defaultState,
       ev: {
         once: (eventName, handler) => {
@@ -55,7 +55,7 @@ describe('ws2:auth', () => {
   })
 
   it('binds auth error listener', (done) => {
-    auth({
+    auth.ws({
       ...defaultState,
       ev: {
         once: (eventName, handler) => {
